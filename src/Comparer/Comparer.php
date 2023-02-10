@@ -31,7 +31,9 @@ abstract class Comparer
     {
         foreach ($firstArray as $key => $value) {
             if (array_key_exists($key, $secondArray)) {
-                if (is_array($value) && !array_is_list($value)) {
+                if (gettype($value) !== gettype($secondArray[$key])) {
+                    yield implode(' > ', [...$prefix, $key]);
+                } elseif (is_array($value) && !array_is_list($value)) {
                     yield from $this->arrayDiffRecursive($value, $secondArray[$key], [...$prefix, $key]);
                 }
             } else {
