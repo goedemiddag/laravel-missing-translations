@@ -34,16 +34,14 @@ class FindMissingTranslationsCommand extends Command
         $this->comparer->handle($languages, $this->options());
 
         if (MissingTranslation::isNotEmpty()) {
-            $languages = MissingTranslation::languages();
-
             $this->table(
-                ['File', 'Key', ...$languages],
+                ['File', 'Key', ...array_map(fn (Language $language) => $language->identifier, $languages)],
                 array_map(function (MissingTranslation $translation) use ($languages) {
                     return [
                         $translation->file,
                         $translation->key,
-                        ...array_map(function (string $language) use ($translation) {
-                            return $translation->isMissingInLanguage($language) ? '<error> X </error>' : '';
+                        ...array_map(function (Language $language) use ($translation) {
+                            return $translation->isMissingInLanguage($language->identifier) ? '<error> X </error>' : '<bg=green>   </>';
                         }, $languages),
                     ];
                 }, MissingTranslation::all())
