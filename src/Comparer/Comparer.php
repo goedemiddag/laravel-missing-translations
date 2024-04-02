@@ -11,7 +11,6 @@ abstract class Comparer
     /**
      * @param array<string, Language> $languages
      * @param array<string, mixed> $options
-     * @return void
      */
     abstract public function handle(array $languages, array $options): void;
 
@@ -22,8 +21,7 @@ abstract class Comparer
 
     /**
      * @phpstan-ignore-next-line
-     * @param array $firstArray
-     * @param array $secondArray
+     *
      * @param string[] $prefix
      * @return Generator<string>
      */

@@ -31,6 +31,7 @@ class CompareAllLanguages extends Comparer
                      */
                     if (!$language->hasFile($languageFile)) {
                         MissingTranslation::file($languageFile, $language->identifier);
+
                         continue;
                     }
 

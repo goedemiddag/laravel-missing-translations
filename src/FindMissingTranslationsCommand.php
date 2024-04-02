@@ -14,7 +14,7 @@ class FindMissingTranslationsCommand extends Command
     protected $description = 'Find missing translations';
 
     public function __construct(
-        private readonly Comparer $comparer
+        private readonly Comparer $comparer,
     ) {
         parent::__construct();
         $this->comparer->configureCommand($this);
@@ -35,7 +35,7 @@ class FindMissingTranslationsCommand extends Command
 
         if (MissingTranslation::isNotEmpty()) {
             $this->table(
-                ['File', 'Key', ...array_map(fn (Language $language) => $language->identifier, $languages)],
+                ['File', 'Key', ...array_map(fn(Language $language) => $language->identifier, $languages)],
                 array_map(function (MissingTranslation $translation) use ($languages) {
                     return [
                         $translation->file,

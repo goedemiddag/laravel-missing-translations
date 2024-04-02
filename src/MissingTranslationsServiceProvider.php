@@ -14,6 +14,7 @@ class MissingTranslationsServiceProvider extends ServiceProvider
         $this->app->bind(Comparer::class, function (): Comparer {
             /** @var class-string<Comparer> $instance */
             $instance = config('lang.missing.comparer');
+
             return new $instance();
         });
     }
