@@ -50,7 +50,7 @@ class MissingTranslation
     {
         return array_filter(
             self::$missingTranslations,
-            fn (self $translation) => $translation->isMissingInLanguage($language)
+            fn(self $translation) => $translation->isMissingInLanguage($language)
         );
     }
 
@@ -59,8 +59,13 @@ class MissingTranslation
      */
     public static function languages(): array
     {
-        return collect(self::$missingTranslations)->flatMap(fn (self $translation) => $translation->languages)->unique(
+        return collect(self::$missingTranslations)->flatMap(fn(self $translation) => $translation->languages)->unique(
         )->values()->all();
+    }
+
+    public static function clear(): void
+    {
+        self::$missingTranslations = [];
     }
 
     /** @var string[] */

@@ -10,7 +10,7 @@ class Language
     public readonly string $identifier;
 
     public function __construct(
-        public readonly string $directory
+        public readonly string $directory,
     ) {
         $this->identifier = basename($this->directory);
     }
@@ -21,7 +21,7 @@ class Language
     public function fileNames(): array
     {
         return array_map(
-            fn (SplFileInfo $fileInfo) => $fileInfo->getFilename(),
+            fn(SplFileInfo $fileInfo) => $fileInfo->getFilename(),
             File::files($this->directory)
         );
     }
