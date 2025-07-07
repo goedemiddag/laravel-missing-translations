@@ -74,8 +74,7 @@ class MissingTranslation
     private function __construct(
         public readonly string $file,
         public readonly ?string $key = null,
-    ) {
-    }
+    ) {}
 
     public function isMissingInLanguage(string $language): bool
     {
