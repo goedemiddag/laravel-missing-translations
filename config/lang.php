@@ -1,7 +1,9 @@
 <?php
 
+use Goedemiddag\LaravelMissingTranslations\Comparer\CompareAgainstBaseLanguage;
+
 return [
     'missing' => [
-        'comparer' => \Goedemiddag\LaravelMissingTranslations\Comparer\CompareAgainstBaseLanguage::class,
+        'comparer' => CompareAgainstBaseLanguage::class,
     ],
 ];
